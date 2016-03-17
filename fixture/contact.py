@@ -82,8 +82,8 @@ class ContactHelper:
         self.open_new_contacts_page()
         # fill contact form
         self.fill_contact_form(contact)
-        wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
         # submit contact creation
+        wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
 
 
     def edit_first_contact(self, contact):
@@ -91,9 +91,18 @@ class ContactHelper:
         #select first contact
         wd.find_element_by_name("selected[]").click()
         # submit edition
-        wd.find_element_by_xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img").click()
+        wd.find_element_by_xpath("///img[@alt='Edit']").click()
         # fill contact form
         self.fill_contact_form(contact)
-        wd.find_element_by_name("update").click()
         # submit contact edition
+        wd.find_element_by_name("update").click()
 
+
+    def delete_first_contact(self):
+        wd = self.app.wd
+        #select first contact
+        wd.find_element_by_name("selected[]").click()
+        #submit delition
+        wd.find_element_by_xpath("//input[@value='Delete']").click()
+        # submit delition pop-up
+        wd.switch_to_alert().accept()
