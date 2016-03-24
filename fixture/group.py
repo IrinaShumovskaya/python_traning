@@ -63,3 +63,8 @@ class GroupHelper:
         wd = self.app.wd
         self.open_groups_page()
         return len (wd.find_elements_by_name("selected[]"))
+
+    def first_empty_name(self):
+        wd = self.app.wd
+        self.open_groups_page()
+        return wd.find_element_by_xpath("//div/div[4]/form/span[1]")
