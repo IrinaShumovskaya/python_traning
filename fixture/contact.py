@@ -46,6 +46,9 @@ class ContactHelper:
         wd = self.app.wd
         wd.find_element_by_link_text("add new").click()
 
+    def open_contacts_page(self):
+        wd = self.app.wd
+        wd.find_element_by_link_text("home").click()
 
     def create(self, contact):
         wd = self.app.wd
@@ -68,13 +71,21 @@ class ContactHelper:
 
     def select_first_contact(self):
         wd = self.app.wd
+        self.open_contacts_page()
         wd.find_element_by_name("selected[]").click()
 
     def delete_first_contact(self):
         wd = self.app.wd
+        self.open_contacts_page()
         self.select_first_contact()
         self.select_first_contact()
         #submit delition
         wd.find_element_by_xpath("//input[@value='Delete']").click()
         # submit delition pop-up
         wd.switch_to_alert().accept()
+
+
+    def count(self):
+        wd = self.app.wd
+        self.open_contacts_page()
+        return len (wd.find_elements_by_name("selected[]"))
