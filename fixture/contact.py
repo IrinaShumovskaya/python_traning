@@ -48,7 +48,8 @@ class ContactHelper:
 
     def open_contacts_page(self):
         wd = self.app.wd
-        wd.find_element_by_link_text("home").click()
+        if not (wd.current_url.endswith("/index.php") and len (wd.find_elements_by_name("add")) > 0):
+            wd.find_element_by_link_text("home").click()
 
     def create(self, contact):
         wd = self.app.wd
@@ -61,6 +62,7 @@ class ContactHelper:
 
     def modify_first_contact(self, new_contact_data):
         wd = self.app.wd
+        self.open_contacts_page()
         self.select_first_contact()
         # submit edition
         wd.find_element_by_xpath("//img[@alt='Edit']").click()
