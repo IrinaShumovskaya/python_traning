@@ -7,7 +7,7 @@ class ContactHelper:
 
     def fill_contact_form(self, contact):
         wd = self.app.wd
-        self.change_field_value("firstname", contact.firstname + str(time())) #add time for different name groups
+        self.change_field_value("firstname", contact.firstname + str(time())) #add time for different name contact
         self.change_field_value("middlename", contact.middlename)
         self.change_field_value("lastname", contact.lastname)
         self.change_field_value("nickname", contact.nickname)
