@@ -96,13 +96,39 @@ class ContactHelper:
     def get_contact_list(self):
         wd = self.app.wd
         self.open_contacts_page()
+        # checkboxes = wd.find_elements_by_xpath('//td/input')
+        # checkboxes_id = []
+        # for x in checkboxes:
+        #     checkboxes_id.append(x.get_attribute('id'))
+        #
+        # firstname = wd.find_elements_by_xpath('//tr/td[3]')
+        # firstname_text = []
+        # for y in firstname:
+        #     firstname_text.append(y.text)
+        #
+        # lastname = wd.find_elements_by_xpath('//tr/td[2]')
+        # lastname_text = []
+        # for z in lastname:
+        #     lastname_text.append(z.text)
+        #
+        # zipped = zip(checkboxes_id, firstname_text, lastname_text)
+        # contact = list(zipped)
+        # return contact
 
         contact = []
-        for element in wd.find_elements_by_css_selector("tr"):
-            id = element.find_element_by_name("selected[]").get_attribute("value")
-            last = element.find_elements_by_css_selector("td")[1]
-            first = element.find_elements_by_css_selector("td")[2]
+        for element in wd.find_elements_by_xpath("//tr"):
+            id = element.find_element_by_xpath('//td/input').get_attribute("value")
+            last = element.find_element_by_xpath('//td[2]').text
+            first = element.find_element_by_xpath('//td[3]').text
             contact.append(Contact(firstname=first, lastname=last, id=id))
         return contact
 
 
+
+        # contact = []
+        # for element in wd.find_elements_by_css_selector("tr"):
+        #     id = element.find_element_by_name("selected[]").get_attribute("value")
+        #     last = element.find_elements_by_css_selector("td")[1]
+        #     first = element.find_elements_by_css_selector("td")[2]
+        #     contact.append(Contact(firstname=first, lastname=last, id=id))
+        # return contact
