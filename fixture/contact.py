@@ -1,4 +1,4 @@
-from time import time
+
 from model.contact import Contact
 
 class ContactHelper:
@@ -8,7 +8,7 @@ class ContactHelper:
 
     def fill_contact_form(self, contact):
         wd = self.app.wd
-        self.change_field_value("firstname", contact.firstname + str(time())) #add time for different name contact
+        self.change_field_value("firstname", contact.firstname)
         self.change_field_value("middlename", contact.middlename)
         self.change_field_value("lastname", contact.lastname)
         self.change_field_value("nickname", contact.nickname)
@@ -81,7 +81,6 @@ class ContactHelper:
         wd = self.app.wd
         self.open_contacts_page()
         self.select_first_contact()
-        self.select_first_contact()
         #submit delition
         wd.find_element_by_xpath("//input[@value='Delete']").click()
         # submit delition pop-up
@@ -96,39 +95,11 @@ class ContactHelper:
     def get_contact_list(self):
         wd = self.app.wd
         self.open_contacts_page()
-        # checkboxes = wd.find_elements_by_xpath('//td/input')
-        # checkboxes_id = []
-        # for x in checkboxes:
-        #     checkboxes_id.append(x.get_attribute('id'))
-        #
-        # firstname = wd.find_elements_by_xpath('//tr/td[3]')
-        # firstname_text = []
-        # for y in firstname:
-        #     firstname_text.append(y.text)
-        #
-        # lastname = wd.find_elements_by_xpath('//tr/td[2]')
-        # lastname_text = []
-        # for z in lastname:
-        #     lastname_text.append(z.text)
-        #
-        # zipped = zip(checkboxes_id, firstname_text, lastname_text)
-        # contact = list(zipped)
-        # return contact
-
         contact = []
-        for element in wd.find_elements_by_xpath("//tr"):
-            id = element.find_element_by_xpath('//td/input').get_attribute("value")
-            last = element.find_element_by_xpath('//td[2]').text
-            first = element.find_element_by_xpath('//td[3]').text
+        for element in wd.find_elements_by_name("entry"):
+            id = element.find_element_by_xpath('./td/input').get_attribute("value")
+            last = element.find_element_by_xpath('./td[2]').text
+            first = element.find_element_by_xpath('./td[3]').text
             contact.append(Contact(firstname=first, lastname=last, id=id))
         return contact
 
-
-
-        # contact = []
-        # for element in wd.find_elements_by_css_selector("tr"):
-        #     id = element.find_element_by_name("selected[]").get_attribute("value")
-        #     last = element.find_elements_by_css_selector("td")[1]
-        #     first = element.find_elements_by_css_selector("td")[2]
-        #     contact.append(Contact(firstname=first, lastname=last, id=id))
-        # return contact
