@@ -69,7 +69,7 @@ class ContactHelper:
         self.open_contacts_page()
         self.select_contact_by_index(index)
         # submit edition
-        wd.find_element_by_xpath("//img[@alt='Edit']").click()
+        wd.find_elements_by_xpath("//img[@src='icons/pencil.png']")[index].click()
         # fill contact form
         self.fill_contact_form(new_contact_data)
         # submit contact edition
