@@ -1,9 +1,9 @@
 from sys import maxsize
 
 class Contact:
-    def __init__(self, firstname=None, middlename=None, lastname=None, nickname=None, title=None, company=None, adress=None, home_phone=None,
-                       mobile_phone=None, work_phone=None, fax=None, email2=None, email3=None, homepage=None, birthday_year=None, anniversary_year=None,
-                       adress2=None, home_phone2=None, notes=None, id=None):
+    def __init__(self, firstname=None, middlename=None, lastname=None, nickname=None, title=None, company=None, adress=None, homephone=None,
+                 mobilephone=None, workphone=None, fax=None, email2=None, email3=None, homepage=None, birthday_year=None, anniversary_year=None,
+                 adress2=None, secondaryphone=None, notes=None, id=None, all_phones_from_homepage=None):
         self.firstname = firstname
         self.middlename = middlename
         self.lastname = lastname
@@ -11,9 +11,9 @@ class Contact:
         self.title = title
         self.company = company
         self.adress = adress
-        self.home_phone = home_phone
-        self.mobile_phone = mobile_phone
-        self.work_phone = work_phone
+        self.homephone = homephone
+        self.mobilephone = mobilephone
+        self.workphone = workphone
         self.fax = fax
         self.email2 = email2
         self.email3 = email3
@@ -21,9 +21,10 @@ class Contact:
         self.birthday_year = birthday_year
         self.anniversary_year = anniversary_year
         self.adress2 = adress2
-        self.home_phone2 = home_phone2
+        self.secondaryphone = secondaryphone
         self.notes = notes
         self.id = id
+        self.all_phones_from_homepage = all_phones_from_homepage
 
     def __repr__(self):
         return '%s:%s:%s' % (self.id, self.firstname, self.lastname)
